@@ -5,6 +5,9 @@ package com.saksham;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,6 +21,17 @@ public class Main {
                         .map(n -> n * n)
                         .reduce(0, Integer::sum);
 
-        System.out.println("MiniStream Result = " + miniResult);
+        Integer streamResult =
+                numbers.stream()
+                        .filter(n -> n % 2 == 0)
+                        .map(n -> n * n)
+                        .reduce(0, Integer::sum);
+
+        System.out.println("MiniStream Result : " + miniResult);
+        System.out.println("JDK Stream Result : " + streamResult);
+
+        System.out.println(
+                "Equal? " + miniResult.equals(streamResult)
+        );
     }
 }
